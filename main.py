@@ -7,7 +7,7 @@ class Patient(BaseModel):
     name: str
     surename: str
 
-app.id = -1
+app.patients = []
 
 @app.get("/")
 def root():
@@ -15,8 +15,14 @@ def root():
 
 @app.post("/patient")
 def patient(patient: Patient):
-    app.id += 1
-    return {"id": (app.id), "patient": patient}
+    app.patients.append(patient)
+    return {"id": (len(app.patients) - 1), "patient": patient}
+
+@app.get("/patient/{pk}", response_model=Patient)
+def patient(pk: int):
+    if pk >= len(app.patients):
+        raise HTTPException(status_code=404, detail="Patient not found")
+    return app.patients[pk]
 
 @app.get("/method")
 def method_get():
