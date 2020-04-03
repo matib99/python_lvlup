@@ -5,9 +5,9 @@ app = FastAPI()
 
 class Patient(BaseModel):
     name: str
-    surname: str
+    surename: str
 
-app.id = 0
+app.id = -1
 
 @app.get("/")
 def root():
@@ -16,7 +16,7 @@ def root():
 @app.post("/patient")
 def patient(patient: Patient):
     app.id += 1
-    return {"id": (app.id - 1), "patient": patient}
+    return {"id": (app.id), "patient": patient}
 
 @app.get("/method")
 def method_get():
