@@ -20,7 +20,7 @@ def patient(patient: Patient):
 
 @app.get("/patient/{pk}", response_model=Patient)
 def patient(pk: int):
-    if pk >= len(app.patients):
+    if pk >= len(app.patients) or pk < 0:
         raise HTTPException(status_code=404, detail="Patient not found")
     return app.patients[pk]
 
