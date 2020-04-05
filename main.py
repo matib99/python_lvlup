@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 
 app = FastAPI()
@@ -39,5 +39,10 @@ def method_put():
 @app.delete("/method")
 def method_del():
     return {"method": "DELETE"}
+
+@app.get("/clear")
+def method_del():
+    app.patients.clear()
+    return {"ok": "OK"}
 
 
