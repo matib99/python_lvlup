@@ -6,16 +6,21 @@ app = FastAPI()
 class Patient(BaseModel):
     name: str
     surename: str
-
+app.countRoot = 0
+app.countWelc = 0
 app.patients = []
 
 @app.get("/")
 def root():
-    return {"message": "Hello World during the coronavirus pandemic!"}
+    app.countRoot += 1
+    return {"message": "Hello World during the coronavirus pandemic!",
+            "counter": app.countRoot}
 
 @app.get("/welcome")
 def welcome():
-    return {"message": "Siema siema o tej porze każdy wypićmoże\n jakby nie było jest bardzo miło!"}
+    app.countWelc += 1
+    return {"message": "Siema siema o tej porze każdy wypićmoże\n jakby nie było jest bardzo miło!",
+            "counter": app.countWelc}
     
 
 @app.post("/patient")
