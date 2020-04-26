@@ -13,6 +13,11 @@ app.patients = []
 def root():
     return {"message": "Hello World during the coronavirus pandemic!"}
 
+@app.get("/welcome")
+def root():
+    return {"message": "Siema siema o tej porze każdy wypićmoże\n jakby nie było jest bardzo miło!"}
+    
+
 @app.post("/patient")
 def patient(patient: Patient):
     app.patients.append(patient)
@@ -24,21 +29,9 @@ def patient(pk: int):
         raise HTTPException(status_code=204, detail="Patient not found")
     return app.patients[pk]
 
-@app.get("/method")
-def method_get():
-    return {"method": "GET"}
-
-@app.post("/method")
-def method_post():
-    return {"method": "POST"}
-
-@app.put("/method")
-def method_put():
-    return {"method": "PUT"}
-
-@app.delete("/method")
-def method_del():
-    return {"method": "DELETE"}
+@app.api_route(path="/method", methods=["GET", "POST", "DELETE", "PUT", "OPTIONS"])
+def read_request(request: Request):
+    return {"method": request.method}
 
 @app.get("/clear")
 def method_del():
