@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request, Response, status
 from pydantic import BaseModel
 
 app = FastAPI()
@@ -14,7 +14,7 @@ def root():
     return {"message": "Hello World during the coronavirus pandemic!"}
 
 @app.get("/welcome")
-def root():
+def welcome():
     return {"message": "Siema siema o tej porze każdy wypićmoże\n jakby nie było jest bardzo miło!"}
     
 
