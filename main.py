@@ -34,9 +34,9 @@ def patient(pk: int):
         raise HTTPException(status_code=204, detail="Patient not found")
     return app.patients[pk]
 
-@app.api_route(path="/method", methods=["GET", "POST", "DELETE", "PUT", "OPTIONS"])
-def read_request(request: Request):
-    return {"method": request.method}
+# @app.api_route(path="/method", methods=["GET", "POST", "DELETE", "PUT", "OPTIONS"])
+# def read_request(request: Request):
+#     return {"method": request.method}
 
 @app.get("/clear")
 def method_del():
