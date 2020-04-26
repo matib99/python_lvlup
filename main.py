@@ -19,7 +19,7 @@ def root():
 @app.get("/welcome")
 def welcome():
     app.countWelc += 1
-    return {"message": "Siema siema o tej porze każdy wypićmoże\n jakby nie było jest bardzo miło!",
+    return {"message": "Welcome!",
             "counter": app.countWelc}
     
 
